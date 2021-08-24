@@ -1,6 +1,22 @@
+let h1display = false;
+//To Display H1 Incomplete and Complete Items
+
+const displayH1 = (h1display) => {
+  let incomplete = document.getElementById("Incomplete");
+  let complete = document.getElementById("completed");
+  if (!h1display) {
+    incomplete.innerHTML = "";
+    complete.innerHTML = "";
+  } else {
+    incomplete.innerHTML = "Incomplete Items";
+    completed.innerHTML = "Complete Items";
+  }
+};
 //function to add each item
 
 const addTodos = () => {
+  h1display = true;
+  displayH1(h1display);
   let todoItem = document.getElementById("todo").value;
   console.log(todoItem);
 
@@ -14,9 +30,10 @@ const addTodos = () => {
     buttone.innerHTML = "Delete"; //To display name of button.
     buttond.innerHTML = "Completed"; //To display name of button.
     mydiv.appendChild(list);
-    mydiv.appendChild(buttone);
-    mydiv.appendChild(buttond);
+    mydiv.appendChild(buttone); //buttone is button to delete
+    mydiv.appendChild(buttond); //buttond is button to send to complete
     buttone.setAttribute("id", "buttone");
+    buttone.addEventListener("click", deleteCurrentTodo);
     buttond.setAttribute("id", "buttond");
     mydiv.setAttribute("id", "para");
 
@@ -28,6 +45,7 @@ const addTodos = () => {
 //function to delete each button
 const deleteCurrentTodo = () => {
   {
+    console.log("test");
     let demo = document.getElementById("demo"); //place element p was attached.
     let del = document.getElementById("para"); //element p.
     let list = document.querySelector("li");
@@ -37,5 +55,3 @@ const deleteCurrentTodo = () => {
 };
 //getting the delete button
 let deleteButton = document.getElementById("buttone");
-
-deleteButton.addEventListener("click", deleteCurrentTodo());
