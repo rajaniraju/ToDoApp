@@ -22,7 +22,7 @@ const displayH2 = (h1Completedisplay) => {
     completed.innerHTML = "Complete Items";
   }
 };
-
+let todoItem = document.getElementById("todo").value;
 //function to add each item
 
 const addTodos = () => {
@@ -46,6 +46,7 @@ const addTodos = () => {
     buttone.setAttribute("id", "buttone");
     buttone.addEventListener("click", deleteCurrentTodo);
     buttond.setAttribute("id", "buttond");
+    buttond.addEventListener("click", markCompleted);
     mydiv.setAttribute("id", "para");
 
     list.innerHTML = todoItem;
@@ -61,6 +62,21 @@ const deleteCurrentTodo = () => {
 
     demo.removeChild(del);
   }
+};
+// function to mark as completed
+const markCompleted = () => {
+  let completed = document.getElementById("completedWork"); //place to attach new node of p element containing a li and a delete button.
+  let mydiv = document.createElement("p"); // where the input items are displayed.
+  let list = document.createElement("li"); //child of element p.
+  let buttone = document.createElement("button"); //another child of element p.Delete button.
+  buttone.innerHTML = "Delete"; //To display name of button.
+  mydiv.appendChild(list);
+  mydiv.appendChild(buttone); //buttone is button to delete
+  buttone.setAttribute("id", "buttone");
+  buttone.addEventListener("click", deleteCurrentTodo);
+  mydiv.setAttribute("id", "para");
+  list.innerHTML = todoItem;
+  completed.append(mydiv);
 };
 const values = [
   "clean the kitchen",
