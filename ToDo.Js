@@ -1,10 +1,11 @@
-let h1display = false;
-//To Display H1 Incomplete and Complete Items
+let h1Incompletedisplay = false;
+let h1Completedisplay = false;
+//To Display H1 Incomplete  Item
 
-const displayH1 = (h1display) => {
+const displayH1 = (h1Incompleteddisplay) => {
   let incomplete = document.getElementById("Incomplete");
-  let complete = document.getElementById("completed");
-  if (!h1display) {
+
+  if (!h1Incompleteddisplay) {
     incomplete.innerHTML = "";
     complete.innerHTML = "";
   } else {
@@ -12,11 +13,21 @@ const displayH1 = (h1display) => {
     completed.innerHTML = "Complete Items";
   }
 };
+//To display H1 Complete Item
+const displayH2 = (h1Completedisplay) => {
+  let complete = document.getElementById("completed");
+  if (!h1Completeddisplay) {
+    complete.innerHTML = "";
+  } else {
+    completed.innerHTML = "Complete Items";
+  }
+};
+
 //function to add each item
 
 const addTodos = () => {
-  h1display = true;
-  displayH1(h1display);
+  h1Incompletedisplay = true;
+  displayH1(h1Incompletedisplay);
   let todoItem = document.getElementById("todo").value;
   console.log(todoItem);
 
@@ -45,13 +56,25 @@ const addTodos = () => {
 //function to delete each button
 const deleteCurrentTodo = () => {
   {
-    console.log("test");
     let demo = document.getElementById("demo"); //place element p was attached.
     let del = document.getElementById("para"); //element p.
-    let list = document.querySelector("li");
 
     demo.removeChild(del);
   }
 };
-//getting the delete button
-let deleteButton = document.getElementById("buttone");
+const values = [
+  "clean the kitchen",
+  "water the plants",
+  "Drive to library",
+  " make dinner",
+  "take shower",
+];
+// //function to test the app
+// const testApp = (values) => {
+//   let inputValue = document.getElementById("todo");
+//   values.forEach((element) => {
+//     console.log(element);
+//     element = inputValue.style.value;
+//   });
+//   addTodos();
+// };
