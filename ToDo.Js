@@ -78,19 +78,31 @@ const markCompleted = () => {
   list.innerHTML = todoItem;
   completed.append(mydiv);
 };
-const values = [
+
+let ValuesToSupply = [
   "clean the kitchen",
   "water the plants",
   "Drive to library",
   " make dinner",
   "take shower",
 ];
-// //function to test the app
-// const testApp = (values) => {
-//   let inputValue = document.getElementById("todo");
-//   values.forEach((element) => {
-//     console.log(element);
-//     element = inputValue.style.value;
-//   });
-//   addTodos();
-// };
+
+//function to test the app
+let inputValue = document.getElementById("todo");
+let input;
+let count = 0;
+function supplyValue(ValuesToSupply) {
+  console.log(ValuesToSupply);
+  if (count >= 5) {
+    return;
+  } else {
+    let v = ValuesToSupply[count];
+    count++;
+    return v;
+  }
+}
+function getInput() {
+  let input = supplyValue(ValuesToSupply);
+  inputValue.value = input;
+  console.log(input);
+}
