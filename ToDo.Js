@@ -1,5 +1,7 @@
 let h1Incompletedisplay = false;
 let h1Completedisplay = false;
+let count = 0;
+
 //To Display H1 Incomplete  Item
 
 const displayH1 = (h1Incompleteddisplay) => {
@@ -27,6 +29,7 @@ let todoItem = document.getElementById("todo").value;
 
 const addTodos = () => {
   h1Incompletedisplay = true;
+  count = count++;
   displayH1(h1Incompletedisplay);
   let todoItem = document.getElementById("todo").value;
   console.log(todoItem);
@@ -34,20 +37,24 @@ const addTodos = () => {
   let demo = document.getElementById("demo"); //place to attach new node of p element containing a li and a delete button.
   if (todoItem) {
     //to make list and button inside a box.
-    let mydiv = document.createElement("p"); // where the input items are displayed.
+    let mydiv = document.createElement("div");
+    let mypara = document.createElement("p"); // where the input items are displayed.
     let list = document.createElement("li"); //child of element p.
     let buttone = document.createElement("button"); //another child of element p.Delete button.
     let buttond = document.createElement("button"); //another child of element p.Done button.
+
     buttone.innerHTML = "Delete"; //To display name of button.
     buttond.innerHTML = "Completed"; //To display name of button.
-    mydiv.appendChild(list);
-    mydiv.appendChild(buttone); //buttone is button to delete
-    mydiv.appendChild(buttond); //buttond is button to send to complete
-    buttone.setAttribute("id", "buttone");
+    mydiv.appendChild(mypara);
+    mypara.appendChild(list);
+    mypara.appendChild(buttone); //buttone is button to delete
+    mypara.appendChild(buttond); //buttond is button to send to complete
+    buttone.setAttribute("class", "buttone");
     buttone.addEventListener("click", deleteCurrentTodo);
     buttond.setAttribute("id", "buttond");
     buttond.addEventListener("click", markCompleted);
-    mydiv.setAttribute("id", "para");
+    mypara.setAttribute("class", "para");
+    mydiv.setAttribute("id", "mydiv");
 
     list.innerHTML = todoItem;
     demo.append(mydiv);
@@ -57,10 +64,15 @@ const addTodos = () => {
 //function to delete each button
 const deleteCurrentTodo = () => {
   {
-    let demo = document.getElementById("demo"); //place element p was attached.
-    let del = document.getElementById("para"); //element p.
+    let button = document.querySelector(".buttone");
+    let child = button.parentElement;
+    let parent = child.parentElement;
+    console.log(child);
+    console.log(parent);
+    //let demo = document.getElementById("demo"); //place element p was attached.
+    //let del = document.getElementById("para"); //element p.
 
-    demo.removeChild(del);
+    parent.removeChild(child);
   }
 };
 // function to mark as completed
@@ -75,7 +87,7 @@ const markCompleted = () => {
   buttone.setAttribute("id", "buttone");
   buttone.addEventListener("click", deleteCurrentTodo);
   mydiv.setAttribute("id", "para");
-  list.innerHTML = todoItem;
+
   completed.append(mydiv);
 };
 
@@ -86,18 +98,18 @@ let ValuesToSupply = [
   " make dinner",
   "take shower",
 ];
-
+//Not Applicable to this project.Only for testing purposes only.
 //function to test the app
 let inputValue = document.getElementById("todo");
 let input;
-let count = 0;
+let value = 0;
 function supplyValue(ValuesToSupply) {
   console.log(ValuesToSupply);
-  if (count >= 5) {
+  if (value >= 5) {
     return;
   } else {
-    let v = ValuesToSupply[count];
-    count++;
+    let v = ValuesToSupply[value];
+    value++;
     return v;
   }
 }
